@@ -1,0 +1,100 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flux
+  namespace: flux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: flux
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "3031" # tell prometheus to scrape /metrics endpoint's port.
+      labels:
+        name: flux
+    spec:
+      nodeSelector:
+        beta.kubernetes.io/os: linux
+      serviceAccountName: flux
+      volumes:
+      - name: certs
+        hostPath:
+          path: /etc/docker/certs.d/ec2-54-144-114-168.compute-1.amazonaws.com/
+      - name: certs2
+        hostPath:
+          path: /etc/docker/certs.d/ec2-54-144-114-168.compute-1.amazonaws.com/
+      - name: ssh-config
+        configMap:
+         name: flux-ssh-config
+      - name: git-key
+        secret:
+          secretName: flux-git-deploy
+          defaultMode: 0400 # when mounted read-only, we won't be able to chmod
+      - name: git-keygen
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: flux
+        image: docker.io/fluxcd/flux:1.20.0
+        imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+        ports:
+        - containerPort: 3030 # informational
+        livenessProbe:
+          httpGet:
+            port: 3030
+            path: /api/flux/v6/identity.pub
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            port: 3030
+            path: /api/flux/v6/identity.pub
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        volumeMounts:
+        - name: certs
+          mountPath: /usr/local/share/ca-certificates/
+        - name: certs2
+          mountPath: /etc/ssl/certs/
+        - name: ssh-config
+          mountPath: /root/.ssh
+        - name: git-key
+          mountPath: /etc/fluxd/ssh # to match location given in image's /etc/ssh/config
+          readOnly: true # this will be the case perforce in K8s >=1.10
+        - name: git-keygen
+          mountPath: /var/fluxd/keygen # to match location given in image's /etc/ssh/config
+        args:
+        ############# Example ############ 
+        #- --memcached-service=
+        #- --ssh-keygen-dir=/var/fluxd/keygen
+        #- --git-url=ssh://git@ec2-54-144-114-168.compute-1.amazonaws.com:2222/samiamoura/shark-application.git
+        #- --git-branch=master
+        #- --git-path=kubernetes
+        #- --git-label=flux-sync
+        #- --git-user=Flux automation
+        #- --git-email=flux@example.com
+        #- --git-ci-skip
+        #- --listen-metrics=:3031
+        
+        ########## To configure ##########
+        - --git-url=**********
+        - --git-branch=***********
+        - --git-path=**********
+        - --memcached-service=
+        - --ssh-keygen-dir=/var/fluxd/keygen
+        - --git-label=flux-sync
+        - --git-user=Flux automation
+        - --git-email=flux@example.com
+        - --git-ci-skip
+        - --listen-metrics=:3031
+
+
