@@ -24,10 +24,10 @@ spec:
       volumes:
       - name: certs
         hostPath:
-          path: /etc/docker/certs.d/ec2-54-144-114-168.compute-1.amazonaws.com/
+          path: /etc/docker/certs.d/
       - name: certs2
         hostPath:
-          path: /etc/docker/certs.d/ec2-54-144-114-168.compute-1.amazonaws.com/
+          path: /etc/docker/certs.d/
       - name: ssh-config
         configMap:
          name: flux-ssh-config
@@ -86,9 +86,9 @@ spec:
         #- --listen-metrics=:3031
         
         ########## To configure ##########
-        - --git-url=**********
-        - --git-branch=***********
-        - --git-path=**********
+        - --git-url=YOUR_REPOS_URL
+        - --git-branch=master
+        - --git-path=YOUR_K8S_GIT_PATH
         - --memcached-service=
         - --ssh-keygen-dir=/var/fluxd/keygen
         - --git-label=flux-sync
