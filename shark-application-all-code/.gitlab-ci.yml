@@ -1,0 +1,44 @@
+stages:
+  - build
+  - test
+  - push
+
+build:
+  image: docker:stable
+  stage: build
+  services:
+    - docker:dind
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:tmp .
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:tmp
+  only:
+  - master
+
+test:
+  image: docker:stable
+  stage: test
+  services:
+    - docker:dind
+  script:
+    - docker run -d --name shark-app -p 8080:8080 $CI_REGISTRY_IMAGE:tmp
+    - sleep 10s
+    - TEST=$(docker run --link shark-app lucj/curl -s http://shark-app:8080 | grep -i "Are you ready to learn about sharks?")
+    - if [ $? -eq 0 ]; then  echo \"TEST OK\"; docker rm -f shark-app ; exit 0; else echo \"TEST KO\"; docker rm -f shark-app ; exit 1; fi;
+  only:
+  - master
+
+push:
+  image: docker:stable
+  stage: push
+  services:
+    - docker:dind
+  script:
+    - docker image pull $CI_REGISTRY_IMAGE:tmp
+    - docker image tag $CI_REGISTRY_IMAGE:tmp $CI_REGISTRY_IMAGE:$CI_BUILD_REF
+    - docker image tag $CI_REGISTRY_IMAGE:tmp $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_BUILD_REF
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  only:
+  - master
