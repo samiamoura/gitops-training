@@ -169,7 +169,8 @@ ls -l $HOME/gitops.id_rsa
 export SECRETNAME="my-gitops-secret-private-key"
 
 aws secretsmanager create-secret --name $SECRETNAME \
---description "SSH Private key to establish connection in our ec2 instances deploy" \
+--description "SSH Private key to establish connection in our ec2 instances deployed" \
+--tags Key=Project,Value=gitops \
 --secret-string file://$HOME/gitops.id_rsa
 ```
 
@@ -652,7 +653,9 @@ The result must be similar to :
 
 ```
 export STACKNAME="my-stack-gitops"
-export SECRETNAME="my-gitops-secret-private-key"
+export SECRETNAME=$(aws secretsmanager list-secrets --query "SecretList[*].[Name]" \
+--filters Key=tag-key,Values=Project Key=tag-value,Values=gitops \
+--output text) 
 export KEYNAME="my-key-gitops"
 ```
 
