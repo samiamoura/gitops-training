@@ -653,7 +653,7 @@ The result must be similar to :
 
 ```
 export STACKNAME="my-stack-gitops"
-export SECRETNAME=$(aws secretsmanager list-secrets --query "SecretList[*].[Name]" \
+SECRETNAME=$(aws secretsmanager list-secrets --query "SecretList[*].[Name]" \
 --filters Key=tag-key,Values=Project Key=tag-value,Values=gitops \
 --output text) 
 export KEYNAME="my-key-gitops"
