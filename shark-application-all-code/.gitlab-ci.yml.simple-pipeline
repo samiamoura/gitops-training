@@ -24,7 +24,7 @@ test:
   script:
     - docker run -d --name shark-app -p 8080:8080 $CI_REGISTRY_IMAGE:tmp
     - sleep 10s
-    - TEST=$(docker run --link shark-app lucj/curl -s http://shark-app:8080 | grep -i "Are you ready to learn about sharks?")
+    - TEST=$(docker run --link shark-app samiamoura/curl -s http://shark-app:8080 | grep -i "Are you ready to learn about sharks?")
     - if [ $? -eq 0 ]; then  echo \"TEST OK\"; docker rm -f shark-app ; exit 0; else echo \"TEST KO\"; docker rm -f shark-app ; exit 1; fi;
   only:
   - master
@@ -46,7 +46,7 @@ push:
 
 deployment:
   stage: deployment
-  image: lucj/kubectl:1.17.2
+  image: samiamoura/kubectl:1.18.0
   environment: test
   script:
     - kubectl config set-cluster my-cluster --server=${KUBE_URL} --certificate-authority="${KUBE_CA_PEM_FILE}"
