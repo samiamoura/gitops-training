@@ -33,7 +33,7 @@ You just have to train on the gitops :blush:
 
 ## Infrastructure 
 
-![schema_infra](https://user-images.githubusercontent.com/58267422/87213138-0e55d800-c323-11ea-9c96-a1f63655cf7a.png)
+![38_schema_infra](https://user-images.githubusercontent.com/58267422/88068166-2245d900-cb70-11ea-9e67-e0fff8df6f8b.png)
 <br>
 
 
