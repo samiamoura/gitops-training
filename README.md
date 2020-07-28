@@ -12,6 +12,8 @@ In this tutorial, we will view how to implement tool chain integration with two 
 
 ## You can view a complete tutorial in the EazyTraining platform. Click [here](https://bit.ly/2BzEgYy) or click on the following schema 
 
+
+
 ![schma et bannierev2](https://user-images.githubusercontent.com/58267422/88659401-499f2780-d0d5-11ea-92b3-bfcfe02c53bf.png)](https://bit.ly/2BzEgYy)
 
 ## Tools
