@@ -14,7 +14,7 @@ In this tutorial, we will view how to implement tool chain integration with two 
 
 ## Or click on the following image 
 
-[![Foo](![schma et banniere](https://user-images.githubusercontent.com/58267422/88658340-8f5af080-d0d3-11ea-80f3-6777f4bfef10.png))](https://bit.ly/2BzEgYy)
+[!(![schma et banniere](https://user-images.githubusercontent.com/58267422/88658340-8f5af080-d0d3-11ea-80f3-6777f4bfef10.png)](https://bit.ly/2BzEgYy)
 
 ## Tools
 
