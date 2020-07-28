@@ -10,7 +10,11 @@ In this tutorial, we will view how to implement tool chain integration with two 
 - Pipeline CI/CD with push approach 
 - Pipeline CI/CD with pull approach
 
-## You can view a complete tutorial in the EazyTraining platform. Click here --> [Tutorial](https://eazytraining.fr)
+## You can view a complete tutorial in the EazyTraining platform. Click [here](https://bit.ly/2BzEgYy)
+
+## Or click on the following image 
+
+[![Foo](![schma et banniere](https://user-images.githubusercontent.com/58267422/88658340-8f5af080-d0d3-11ea-80f3-6777f4bfef10.png))](https://bit.ly/2BzEgYy)
 
 ## Tools
 
