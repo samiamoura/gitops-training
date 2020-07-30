@@ -1,8 +1,26 @@
-# gitops-training
+# GitOps Training
 
-This is a project to train with GitOps metodology.
+## General
 
-This repository provides a complete automated environment. In fact, you have just follow the tutorial step by step to deploy infrastructure and understand GitOps concepts.
+This is a complete project to train with GitOps metodology.
+
+This repository provides a complete automated environment to deploy a functional infrastructure on AWS Provider and then we help to confifure it step by step to understand and train with GitOps concepts
+
+## Infrastructure
+
+This tutorial, allow to deploy an infrastructure on AWS cloud. We will provision 4 EC2 servers with the following specifications :
+- One GitLab CE hosted on a private EC2 host, with his own Docker registry,
+- One Kubernetes cluster with one control plane node and two workers nodes.
+
+This infrastructue is powered with Instrasdtructure as Code by AWS CloudFormation. We can use two type of files :
+- [AWS CloudFormation Stack File](https://github.com/samiamoura/gitops-training/blob/master/aws-stack/stack-GitOps.yml), to deploy your infrastructure in a basic plateforme AWS Cloud,
+- [AWS Educate CloudFormation Stack File](https://github.com/samiamoura/gitops-training/blob/master/aws-educate-stack/stack-GitOps-educate.yml), to deploy your infrastructure in a educative plateforme AWS Cloud.
+
+To resume, these stack files use : 
+- [AWS CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-stack) : AWS CLI, AWS Secret Manager, AWS IAM (instance profile), management Gitlab Registry certificate (generation end deployement)...
+- [AWS Educate CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-educate-stack) : AWS IAM (instance profile), management Gitlab Registry certificate (generation end deployement)...
+
+Every stack is detailed in depth. You can view more details about these stacks by clicking on the link file.
 
 ## Project
 
@@ -20,5 +38,5 @@ The tools used for this projet :
 - AWS, AWS CLI, CloudFormation, IAM Instance roles, Secret Manager, EC2
 - Docker 
 - Kubernetes 
-- GitLab, CI/CD, 
+- GitLab
 - FluxCD
