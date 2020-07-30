@@ -4,7 +4,7 @@
 
 This is a complete project to train with GitOps metodology.
 
-This repository provides a complete automated environment to deploy a functional infrastructure on AWS Provider and then we help to confifure it step by step to understand and train with GitOps concepts
+This repository provides a complete automated environment to deploy a functional infrastructure on AWS Provider and then we help to configure it step by step to understand and train with GitOps concepts.
 
 ## Infrastructure
 
