@@ -20,7 +20,7 @@ To resume, these stack files use :
 - [AWS CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-stack) : AWS CLI, AWS Secret Manager, AWS IAM (instance profile), management Gitlab Registry certificate (generation end deployement)...
 - [AWS Educate CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-educate-stack) : AWS IAM (instance profile), management Gitlab Registry certificate (generation end deployement)...
 
-Every stack is detailed in depth. You can view more details about these stacks by clicking on the link file.
+Every stack is detailed in depth. You can view more details about these stacks by clicking on [AWS CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-stack) or on [AWS Educate CloudFormation Stack File Description](https://github.com/samiamoura/gitops-training/tree/master/aws-educate-stack).
 
 ## Project
 
