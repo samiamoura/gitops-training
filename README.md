@@ -1,5 +1,8 @@
 # GitOps Training
 
+![Capture d’écran 2020-08-15 à 22 09 40](https://user-images.githubusercontent.com/58267422/90320755-13bac980-df44-11ea-8bc1-b72398fe6628.png)
+
+
 ## General
 
 This is a complete project to train with GitOps metodology.
